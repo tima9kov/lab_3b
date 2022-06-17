@@ -27,7 +27,7 @@ int get_key(key_t k) {
 	return k;
 }
 
-void get_line(int i)
+Type get_line()
 {
 	int len = 1;
 	Type str = (Type)malloc(len);
@@ -41,12 +41,10 @@ void get_line(int i)
 	}
 	str[len - 1] = '\0';
 	printf("%s (%d symbols)\n", str, len - 1);
-	vector[i].info = str;//не удаляю ук-ль ибо отдаю во вл-е структуре по 
-						 //принципу умных указатель и удалять буду тоЛЬко из стр-ры
-	vector[i].size = len;
+	return str;
 }
 
-void get_line_f(int i, FILE* f) //f - указатель на структуру файл
+Type get_line_f(FILE* f) //f - ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г±ГІГ°ГіГЄГІГіГ°Гі ГґГ Г©Г«
 {
 	int len = 1;
 	Type str = (Type)malloc(len);
@@ -54,8 +52,8 @@ void get_line_f(int i, FILE* f) //f - указатель на структуру файл
 		
 	//printf("input string: ");
 	//rewind(stdin);
-	//как обновить буфер файла
-	fread(&c, 1, 1, f);//чтение из файла f 1шт разм 1 в с
+	//ГЄГ ГЄ Г®ГЎГ­Г®ГўГЁГІГј ГЎГіГґГҐГ° ГґГ Г©Г«Г 
+	fread(&c, 1, 1, f);//Г·ГІГҐГ­ГЁГҐ ГЁГ§ ГґГ Г©Г«Г  f 1ГёГІ Г°Г Г§Г¬ 1 Гў Г±
 	while (c != '\0') {
 		str[len - 1] = c;
 		len++;
@@ -64,9 +62,7 @@ void get_line_f(int i, FILE* f) //f - указатель на структуру файл
 	}
 	str[len - 1] = '\0';
 	//printf("%s (%d symbols)\n", str, len - 1);
-	vector[i].info = str;
-	vector[i].size = len;
-	//printf("\n%d %d\n", i, len);
+	return str;
 }
 
 int get_size() {
@@ -81,8 +77,8 @@ int get_size() {
 
 int get_size_f(FILE* f) {
 	int result = 0;
-	int bytes = fread(&result, sizeof(int), 1, f); //читаем из файла размер таблицы в бинарном виде в переменную result
-	//можно было бы проверить. что кол-во байт = 4
+	int bytes = fread(&result, sizeof(int), 1, f); //Г·ГЁГІГ ГҐГ¬ ГЁГ§ ГґГ Г©Г«Г  Г°Г Г§Г¬ГҐГ° ГІГ ГЎГ«ГЁГ¶Г» Гў ГЎГЁГ­Г Г°Г­Г®Г¬ ГўГЁГ¤ГҐ Гў ГЇГҐГ°ГҐГ¬ГҐГ­Г­ГіГѕ result
+	//Г¬Г®Г¦Г­Г® ГЎГ»Г«Г® ГЎГ» ГЇГ°Г®ГўГҐГ°ГЁГІГј. Г·ГІГ® ГЄГ®Г«-ГўГ® ГЎГ Г©ГІ = 4
 	return result;
 }
 
