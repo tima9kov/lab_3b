@@ -10,9 +10,9 @@ int capacity;
 
 typedef struct
 {
-	int   busy;  // 0 - позиция свободна, 1 - занята, -1 - удалена
-	key_t  key;  //ключ элемента
-	Type info;   //указатель на информацию
+	int   busy;  // 0 - ГЇГ®Г§ГЁГ¶ГЁГї Г±ГўГ®ГЎГ®Г¤Г­Г , 1 - Г§Г Г­ГїГІГ , -1 - ГіГ¤Г Г«ГҐГ­Г 
+	key_t  key;  //ГЄГ«ГѕГ· ГЅГ«ГҐГ¬ГҐГ­ГІГ 
+	Type info;   //ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ
 	int size;
 }Item;
 
@@ -20,7 +20,7 @@ Item *vector;
 
 void print_menu();
 key_t hash_function(key_t k, int capacity);
-int insert(key_t k, int capacity, FILE *f);
+int insert(key_t k, int capacity, Type useful_line);
 int search(key_t k, int capacity);
 int delete_element(key_t key, int capacity);
 void print_table(int capacity);
