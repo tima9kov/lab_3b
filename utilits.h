@@ -11,8 +11,8 @@ enum choice
 	SHOW_TABLE
 };
 
-void get_line(int);
-void get_line_f(int , FILE* f);
+Type get_line();
+Type get_line_f(FILE* f);
 int get_size();
 int get_size_f(FILE* f);
 int select_action(int choice);
