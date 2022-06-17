@@ -66,7 +66,7 @@ void get_line_f(int i, FILE* f) //f - указатель на структуру файл
 	//printf("%s (%d symbols)\n", str, len - 1);
 	vector[i].info = str;
 	vector[i].size = len;
-	printf("\n%d %d\n", i, len);
+	//printf("\n%d %d\n", i, len);
 }
 
 int get_size() {

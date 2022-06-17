@@ -12,7 +12,9 @@ enum choice
 };
 
 void get_line(int);
+void get_line_f(int , FILE* f);
 int get_size();
+int get_size_f(FILE* f);
 int select_action(int choice);
 int get_key(key_t k);
 void init_table(int capacity);

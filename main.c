@@ -31,11 +31,11 @@
 #include "hash_table.h"
 #include "utilits.h"
 
-FILE* prepare_arg_file(char** file_name) {	
+FILE* prepare_arg_file(char** file_name) {
 	int len = 1;
 	*file_name = (char*)malloc(len);
-	char c; 
-	
+	char c;
+
 	//rewind(stdin);
 	//как обновить буфер файла
 	printf("Input file name or emty line for entering from keyboard . . . ");
@@ -50,17 +50,22 @@ FILE* prepare_arg_file(char** file_name) {
 
 void save_and_close_file(FILE* f, char* file_name) {
 	char c = '\0';
+	int empty = 0;
 	//имя файла можно достать из структуры файл
-	if (f != NULL){
+	if (f != NULL) {
 		fclose(f);
 	}
 	f = fopen(file_name, "wb"); //если захочется обнаркоматься написать бэкап файла
 	fwrite(&capacity, sizeof(int), 1, f);
 	for (int i = 0; i < capacity; i++) {
 		if (vector[i].info != NULL) {
+			fwrite(&vector[i].key, sizeof(int), 1, f);
+			fwrite(&vector[i].busy, sizeof(int), 1, f);
 			fwrite(vector[i].info, sizeof(char), vector[i].size, f);
 		}
 		else {
+			fwrite(&empty, sizeof(int), 1, f);
+			fwrite(&empty, sizeof(int), 1, f);
 			fwrite(&c, 1, 1, f);
 		}
 	}
@@ -99,8 +104,9 @@ int main()
 	init_table(capacity);
 	if (f != NULL) {
 		for(int i = 0; i < capacity; i++)
-		insert(key, capacity, f);
+		insert(i, capacity, f);
 	}
+
 	do {
 		print_menu();
 		choice = select_action(choice);
