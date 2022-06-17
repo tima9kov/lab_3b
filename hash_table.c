@@ -61,7 +61,9 @@ int insert(key_t k, int capacity, FILE *f )//если передан null - с файлом не раб
 	vector[i].key = k;
 	vector[i].busy = 1;
 
-	if (f != NULL) {
+	if (f != NULL) {		
+		fread(&vector[i].key, sizeof(int), 1, f);
+		fread(&vector[i].busy, sizeof(int), 1, f);
 		get_line_f(i, f);
 	}
 	else {
